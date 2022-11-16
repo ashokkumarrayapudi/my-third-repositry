@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="ed228c3a-97ce-4a1b-befa-9de4e9eeb498" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="led-system-apiFlow" doc:id="0e92fca3-9044-4eea-92b1-9046fa33bef3" >
+		<http:listener doc:name="Listener" doc:id="2c24aefb-28e3-4922-827e-f0085d65219c" path="/system" config-ref="HTTP_Listener_config"/>
+		<ee:transform doc:name="Transform Message" doc:id="c10c7212-4050-4c18-9627-e7cc3f206f05" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"name": "ashok",
+	"address": "ongole",
+	"mobileno": 8008212880,
+	"mail": "ashok@gmail.com"
+	
+	      
+	      
+	  
+}
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
